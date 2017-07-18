@@ -6,6 +6,19 @@
             <div class="layout-logo">
                 <img src="./assets/images/logo.png">院内血糖管理系统
             </div>
+            <div class="layout-setting"> 
+                <Dropdown trigger="click" >
+                    <a href="javascript:void(0)">
+                        超级管理员
+                        <Icon type="arrow-down-b"></Icon>
+                    </a>
+                    <Dropdown-menu slot="list"  on-click='dropclick'>
+                        <Dropdown-item>切换</Dropdown-item>
+                        <Dropdown-item>设置</Dropdown-item>
+                        <Dropdown-item>退出</Dropdown-item> 
+                    </Dropdown-menu>
+                </Dropdown>
+            </div>
             <!-- <div class="layout-nav">
                 <Menu-item name="1">
                     <Icon type="ios-navigate"></Icon>
@@ -88,34 +101,33 @@
                         <Icon type="navicon" size="32"></Icon>
                     </i-button>
                 </div>
-                <div class="layout-content-main">
+                <div class="layout-content-main"> 
                     <router-view></router-view>
                 </div>
             </div> 
-        </div>
-       <!-- /<div class="layout-copy">
-           2011-2016 &copy; TalkingData
-       </div> -->
+        </div> 
     </div> 
   </div>
 </template>
 
 <script>
 import VBar from 'v-bar';
+import data from './menu_data'; 
 export default {
     components: { VBar },
     name: 'app',
     data() {
         return {
-            labelPosition: 'top',
-            topicCategoryName:''
+            data:{}
         }
     },
     created() {
-        console.log(this);
+        console.log(this); 
      },  
     methods: {
-
+        dropclick:function(e){
+            console.log(e);
+        }
     }
 }
 </script>
