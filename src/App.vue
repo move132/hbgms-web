@@ -3,9 +3,9 @@
     <!-- <img src="./assets/images/logo.png"> -->
     <div class="layout">
        <Headers></Headers>
-           
+          <my-component></my-component>
 
-        <div class="layout-content">
+        <div :class="'layout-content '+(sidebar ? 'sidebar-collapsed': '') ">
             <div class="panel_left">
                 <v-bar wrapper="wrapper" vBar="re_barscroll" vBarInternal="" hBar=""   hBarInternal="">
                    <Menu ref="menu" :active-name="activeName" :open-names="openNames" theme="dark"  accordion  @on-select="onselect" @on-open-change="openchange">
@@ -13,7 +13,9 @@
                             <Submenu :name="index+1" :data-index="index+1" >
                                 <template slot="title">
                                     <Icon type="ios-keypad"></Icon>
-                                    {{ item.navname }}
+                                    <router-link :to="item.router ? item.router : '' "> 
+                                        {{ item.navname }}
+                                    </router-link>
                                 </template>
                                 <template v-for="(item_nav,i) in item.nav_menu">  
                                     <router-link :to="item_nav.router">
@@ -29,11 +31,11 @@
             </div>
             <div class="panel_right">
                 <div class="layout-header">
-                    <i-button type="text" @click="">
+                    <i-button type="text" @click="sidebarHandler">
                         <Icon type="navicon" size="32"></Icon>
                     </i-button>
                 </div>
-                <div class="layout-content-main"> 
+                <div class="layout-content-main">  <Navcion></Navcion>
                     <transition name="bounce" mode="out-in" appear>
                         <router-view></router-view>
                     </transition>
@@ -48,13 +50,15 @@
 import VBar from 'v-bar'; 
 import data from './menu_data'; 
 import Headers from './components/layout/Headers';
+import Navcion from './components/navicon';
 export default {
-    components: { VBar, Headers },
+    components: { VBar, Headers ,Navcion },
     name: 'app',
     data() {
         return {
             activeName: '',
             openNames: [],
+            sidebar:false,
             data:data
         }
     },
@@ -63,6 +67,10 @@ export default {
         this.update();
     },  
     methods: {
+        sidebarHandler(){
+            console.log(this.sidebar);
+            this.sidebar= !this.sidebar;
+        },
         dropclick(e){
             console.log(e);
         },

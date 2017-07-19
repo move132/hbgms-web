@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Hello from '@/components/Hello';
-import Index from '@/page/index';
+import Index from '@/page/index/index';
 
 Vue.use(Router);
 
@@ -11,7 +11,7 @@ export default new Router({
 		path: '/',
 		name: 'Index',
 		// redirect:'/obd/1'
-		component: resolve => require(['@/page/index'], resolve)
+		component: resolve => require(['@/page/index/index'], resolve)
 	}, {
 		path: '/hello',
 		name: 'Hello',
