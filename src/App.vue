@@ -3,7 +3,7 @@
     <!-- <img src="./assets/images/logo.png"> -->
     <div class="layout">
        <Headers></Headers>
-          <my-component></my-component>
+        
 
         <div :class="'layout-content '+(sidebar ? 'sidebar-collapsed': '') ">
             <div class="panel_left">
